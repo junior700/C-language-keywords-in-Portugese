@@ -1,0 +1,38 @@
+#######################################
+# Syntax Colouring Map For PTconverter
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+PTconverter	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+enquanto 	KEYWORD2
+se 		KEYWORD2
+entao 		KEYWORD2
+para 		KEYWORD2
+inteiro 		KEYWORD2
+caracter 		KEYWORD2
+vazio 		KEYWORD2
+para		KEYWORD2
+principal             	KEYWORD2
+maior 		KEYWORD2
+menor 		KEYWORD2
+igual 		KEYWORD2
+menu 		KEYWORD2
+caso 		KEYWORD2
+e 		KEYWORD2
+ou		KEYWORD2
+E 		KEYWORD2
+OU		KEYWORD2
+definicao 	KEYWORD2
+configuraPino 	KEYWORD2
+escrevePino 	KEYWORD2
+lePino		KEYWORD2
+retardo 		KEYWORD2 	 
+
+#######################################
+
