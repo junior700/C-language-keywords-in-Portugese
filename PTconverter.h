@@ -180,7 +180,7 @@ responder <dado>: indica o dado que será retornada pela função caso não seja
 //#define Memoria.formatar(): apaga todos os dados da memória do arduino
 #define formatar  erase
 //#define LCD LiquidCrystal // definicao inicial com o 
-#define LCD nome(RS,En,D4,D5,D6,D7)   (LiquidCrystal nome(RS, En, D4, D5, D6, D7)) //: cria o objeto LCD para ser utilizado (LiquidCrystal <name>())
+#define LCD.nome(RS,En,D4,D5,D6,D7)   (LiquidCrystal nome(RS, En, D4, D5, D6, D7)) //: cria o objeto LCD para ser utilizado (LiquidCrystal <name>())
 #define nome.conectar(Numero_colunas,Numero_linhas)   (nome.begin(Numero_colunas,Numero_linhas)) //<nome>.conectar(Numero colunas, Numero linhas): inicia a comunicação com o lcd com o número de linhas e colunas definido (<name>.begin())
 #define nome.enviar(Palavra_mensagem)   (nome.print(Palavra_mensagem)) //<nome>.enviar(Palavra mensagem): envia a palavra para o LCD (<name>.print())
 #define nome.escrever(byte_b)     (nome.write(byte_b)) //<nome>.escrever(byte b): escreve em hexadecimal o byte enviado para o LCD (<name>.write)
@@ -189,35 +189,39 @@ responder <dado>: indica o dado que será retornada pela função caso não seja
 //Servo
 #define Servo.nome  Servo nome //: cria o objeto servo para ser utilizado (Servo <name>)
 //#define <nome>.conectar(Pino digital): conecta o servo à porta digital (<name>.attach())
-#define angulo.servo  (int anguloServo=0) // define uma variável para o angulo atual do servo, difere do BRduino
+#define angulo.servo  (int anguloServo=0) // define uma variável para o angulo atual do servo, difere do BRino
 #define nome.conectar(Pino_digital)   nome.attach(Pino_digital) // conecta o servo à porta digital (<name>.attach())
 //#define //<nome>.escreverAngulo(Numero angulo): posiciona o servo no ângulo fornecido(<name>.write)
 #define nome.escreverMicros(Numero_micros)    (nome.writeMicroseconds(Numero_micros))  //: define a duracao em microsegundos do pulso para controlar o servo de rotação contínua (<name>.writeMicroseconds())
 #define Servo.frente()  (nome.writeMicroseconds(1700)) // : constantes de pulso para controle de servos de rotação contínua para fente.
 #define Servo.tras()    (nome.writeMicroseconds(1300)) //: constantes de pulso para controle de servos de rotação contínua para trás.
 #define Servo.parar()   (nome.writeMicroseconds(1500)) //: constantes de pulso para controle de servos de rotação contínua para parar.
-#define nome.angulo(anguloServo)   (nome.write(anguloServo)) // posiciona o servo no angulo especificado
+#define nome.angulo(anguloServo)   (nome.write(anguloServo)) // posiciona o servo no angulo especificado, difere do BRino
 
 
 //I2C
+
 #define I2C.conectar(endereco)    (Wire.begin(endereco))       //: inicia a comunicação I2C(o endereço é opcional para o mestre)(Wire.begin())
 #define I2C.transmitir(endereco)  (Wire.beginTranmission(endereco)) //: abre uma transmissão para o escravo com o endereço fornecido(Wire.beginTranmission)
 #define I2C.pararTransmitir()     (Wire.endTransmission())    //: fecha a transmissão que estava aberta(Wire.endTransmission())
 #define I2C.escrever(msg)         (Wire.write())            //: envia a mensagem para a transmissão aberta(apenas o mestre pode mandar, mas esse método pode ser usado pelo escravo para enviar a resposta de um pedido)(Wire.write())
 #define I2C.disponivel()          (Wire.available())        //:verifica quantos dados estão disponíveis para o mestre após um pedido(Wire.available())
 #define I2C.ler()   (Wire.read())          //:lê os dados disponíveis na transmissão ou na resposta(Wire.read())
-#define I2C.solicitar(Numero endereco, Numero quantBytes): solicita "quantBytes" bytes de escravo no endereço fornecido(Wire.requestFrom())
-#define I2C.solicitado(metodo): registra o método fornecido como resposta à solicitação(Wire.onRequest())
-#define I2C.recebido(metodo): registra o método fornecido como resposta ao recebimento de dados(Wire.onReceive())
+#define I2C.solicitar(endereco,quantBytes)  (Wire.requestFrom(endereco,quantBytes))   //: solicita "quantBytes" bytes de escravo no endereço fornecido(Wire.requestFrom())
+#define I2C.solicitado(metodo)              (Wire.onRequest(metodo))     //: registra o método fornecido como resposta à solicitação(Wire.onRequest())
+#define I2C.recebido(metodo)                (Wire.onReceive(metodo))  //: registra o método fornecido como resposta ao recebimento de dados(Wire.onReceive())
+
+
 //Outras palavras-chaves
 //Funções necessárias a um código Brino
-#define Configuracao(){}: parte do código que será executado uma vez e que prepara o sistema para o resto do programa (void setup(){})
-#define Principal(){}: código principal que será executado repetidas vezes (void loop(){})
+
+#define Configuracao  setup   //: parte do código que será executado uma vez e que prepara o sistema para o resto do programa (void setup(){})
+#define Principal     loop     //código principal que será executado repetidas vezes (void loop(){})
 //Instruções de Controle
-#define para (dado d; dado <comparador> referencia; incremento) faca{}: repete o bloco de código de acordo com as condições descritas(for(){})
-#define se (dado <comparador> referencia) faca{}: realiza o bloco de código se o resultado da comparação for Verdadeiro (if (){})
-#define senao_faca{}: realiza o bloco de código caso o resultado do "se" relacionado seja Falso (else{})
-#define enquanto (dado <comparador> referencia) faca{}: realiza o bloco de instruções enquanto o resultado for Verdadeiro (while(){})
+#define para  for  //: repete o bloco de código de acordo com as condições descritas(for(){})
+#define se   if  //(dado <comparador> referencia) faca{}: realiza o bloco de código se o resultado da comparação for Verdadeiro (if (){})
+#define senao_faca else //: realiza o bloco de código caso o resultado do "se" relacionado seja Falso (else{})
+#define enquanto   while   //(dado <comparador> referencia) faca{}: realiza o bloco de instruções enquanto o resultado for Verdadeiro (while(){})
 //Comparadores
 //==: igual a
 //<: menor que
@@ -230,8 +234,8 @@ responder <dado>: indica o dado que será retornada pela função caso não seja
 #define &   E 
 #define |   OU
 //Palavras-chaves
-#define SemRetorno: utilizada para declarar o tipo de retorno de uma função como vazio (void)
-#define responder <dado>: indica o dado que será retornada pela função caso não seja SemRetorno (return)
+#define SemRetorno  void  //: utilizada para declarar o tipo de retorno de uma função como vazio (void)
+#define responder   return  //indica o dado que será retornada pela função caso não seja SemRetorno (return)
 
 /*definições antigas, substituidas pelas listadas acima
 #define para for
