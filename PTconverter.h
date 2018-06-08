@@ -30,6 +30,7 @@ This software is released under an MIT license. See the attached LICENSE file fo
 
 (trecho abaixo copiado do repositorio do BRduino no github)
 Tipos de Dados:
+
 Numero: valores númericos inteiros até +- 32767 (int)
 NumeroDecimal: valores númericos com casas decimais (float)
 NumeroLongo: valores númericos inteiros até 2147483647 (long)
@@ -119,6 +120,7 @@ responder <dado>: indica o dado que será retornada pela função caso não seja
 */
 
 //Tipos de Dados:
+
 #define Numero  int //: valores númericos inteiros até +- 32767 (int)
 #define NumeroDecima float //: valores númericos com casas decimais (float)
 #define NumeroLongo: valores númericos inteiros até 2147483647 (long)
@@ -130,16 +132,20 @@ responder <dado>: indica o dado que será retornada pela função caso não seja
 
 #define Modulo: utiliza somente o valor e ignora o sinal do número (unsigned)
 #define Constante: indica que a variável possui valor constante, ou seja, não mudará durante a execução (const)
+
 //Funções:
 //Arduino
+
 #define soar  tone //(Numero pino, Numero frequencia, Numero duracao): toca determinada nota no alto-falante conectado ao Pino durante o periodo definido(opcional) (tone())
 #define pararSoar noTone //(Numero pino): interrompe a nota que está sendo tocada no pino fornecido (noTone)
 #define esperar delay  //(Numero milis): espera "milis" milissegundos (delay())
 #define proporcionar  map //(): faz uma regra de três com os valores fornecidos (map())
 #define definir #define: define uma constante que será utilizada durante o programa (#define)
 #define usar  #include  //: importa as dependências do programa como libraries externas (#include)
+
 //USB
 //USB.conectar(Numero TaxaDeTransmissao): configura a comunicação serial pela porta USB com a a taxa de transmissão fornecida como argumento. Padrão 9600. (Serial.begin(baudrate))
+
 #define USB.conectar  Serial.begin
 //USB.enviar  print(Palavra mensagem):envia a Palavra fornecida para o monitor serial conectado (.print(String message))
 #define enviar  print
@@ -148,8 +154,11 @@ responder <dado>: indica o dado que será retornada pela função caso não seja
 //USB.disponivel():verifica se há dados disponíveis na porta serial(.available())
 #define disponivel  available
 //USB.ler():lê os dados disponíveis na porta serial(.read())
-#define ler read;
+#define ler read    // termo vale para leitura em varias instâncias
+#define escrever  write   // termo vale para escrita em varias instâncias
+
 //Pino
+
 #define Pino.definirModo pinMode //(Numero pino, Modo): define o modo da porta digital fornecida(apenas o número) para o modo fornecido (Entrada ou Saida) (pinMode(int pin, [OUTPUT ou INPUT]))
 #define Pino.escrever digitalWrite //(Pino, saida): escreve o valor fornecido na porta fornecida (analogWrite(int pin, int value) ou digitalWrite(int pin, [HIGH ou LOW]))
 #define Pino.escreverAnalogico analogWrite //(Pino, saida): escreve o valor fornecido na porta analógica fornecida (analogWrite(int pin, int value))
@@ -160,7 +169,9 @@ responder <dado>: indica o dado que será retornada pela função caso não seja
 #define Pinos.Digitais   Digital.num//: Digital.num ou num
 #define Pinos.analógicos   Anum//: Anum, Analogico.num
 #define Valores Digitais: Ligado ou 1,Desligado ou 0.
+
 //Libraries inclusas no IDE (devem ser declaradas com usar):
+
 #define Memoria EEPROM
 //#define Memoria.ler(Numero endereco): lê o byte do endereço fornecido (EEPROM.read())
 //#define Memoria.escrever(Numero endereco, byte dado): escreve o byte fornecido no endereço fornecido (EEPROM.write())
@@ -169,29 +180,32 @@ responder <dado>: indica o dado que será retornada pela função caso não seja
 //#define Memoria.formatar(): apaga todos os dados da memória do arduino
 #define formatar  erase
 //#define LCD LiquidCrystal // definicao inicial com o 
-#define LCD.nome(RS,En,D4,D5,D6,D7)   (LiquidCrystal nome(RS, En, D4, D5, D6, D7)) //: cria o objeto LCD para ser utilizado (LiquidCrystal <name>())
-#define <nome>.conectar(Numero_colunas,Numero_linhas)   (<nome>.begin(Numero_colunas,Numero_linhas)) //<nome>.conectar(Numero colunas, Numero linhas): inicia a comunicação com o lcd com o número de linhas e colunas definido (<name>.begin())
-#define <nome>.enviar(Palavra_mensagem)   (<nome>.print(Palavra_mensagem)) //<nome>.enviar(Palavra mensagem): envia a palavra para o LCD (<name>.print())
-#define <nome>.escrever(byte_b)     (<nome>.write(byte_b)) //<nome>.escrever(byte b): escreve em hexadecimal o byte enviado para o LCD (<name>.write)
-#define <nome>.posicao(Numero_coluna,Numero_linha)    (<nome>.setCursor(Numero_coluna,Numero linha)) //<nome>.posicao(Numero coluna, Numero linha): posiciona o cursor na linha e coluna definidas (<name>.setCursor())
-#define <nome>.limpar <nome>.clear //<nome>.limpar(): apaga o que está escrito no LCD (<name>.clear)
+#define LCD nome(RS,En,D4,D5,D6,D7)   (LiquidCrystal nome(RS, En, D4, D5, D6, D7)) //: cria o objeto LCD para ser utilizado (LiquidCrystal <name>())
+#define nome.conectar(Numero_colunas,Numero_linhas)   (nome.begin(Numero_colunas,Numero_linhas)) //<nome>.conectar(Numero colunas, Numero linhas): inicia a comunicação com o lcd com o número de linhas e colunas definido (<name>.begin())
+#define nome.enviar(Palavra_mensagem)   (nome.print(Palavra_mensagem)) //<nome>.enviar(Palavra mensagem): envia a palavra para o LCD (<name>.print())
+#define nome.escrever(byte_b)     (nome.write(byte_b)) //<nome>.escrever(byte b): escreve em hexadecimal o byte enviado para o LCD (<name>.write)
+#define nome.posicao(Numero_coluna,Numero_linha)    (nome.setCursor(Numero_coluna,Numero linha)) //<nome>.posicao(Numero coluna, Numero linha): posiciona o cursor na linha e coluna definidas (<name>.setCursor())
+#define nome.limpar nome.clear //<nome>.limpar(): apaga o que está escrito no LCD (<name>.clear)
 //Servo
-//#define Servo <nome>: cria o objeto servo para ser utilizado (Servo <name>)
+#define Servo.nome  Servo nome //: cria o objeto servo para ser utilizado (Servo <name>)
 //#define <nome>.conectar(Pino digital): conecta o servo à porta digital (<name>.attach())
 #define angulo.servo  (int anguloServo=0) // define uma variável para o angulo atual do servo, difere do BRduino
-#define <nome>.conectar(Pino_digital)   <nome>.attach(Pino_digital) // conecta o servo à porta digital (<name>.attach())
-#define //<nome>.escreverAngulo(Numero angulo): posiciona o servo no ângulo fornecido(<name>.write)
-#define <nome>.escreverMicros(Numero_micros)    (<name>.writeMicroseconds(Numero_micros))  //: define a duracao em microsegundos do pulso para controlar o servo de rotação contínua (<name>.writeMicroseconds())
-#define Servo.frente(1700): constantes de pulso para controle de servos de rotação contínua para fente.
-#define Servo.tras(1300): constantes de pulso para controle de servos de rotação contínua para trás.
-//#define Servo.parar(1500): constantes de pulso para controle de servos de rotação contínua para parar.
+#define nome.conectar(Pino_digital)   nome.attach(Pino_digital) // conecta o servo à porta digital (<name>.attach())
+//#define //<nome>.escreverAngulo(Numero angulo): posiciona o servo no ângulo fornecido(<name>.write)
+#define nome.escreverMicros(Numero_micros)    (nome.writeMicroseconds(Numero_micros))  //: define a duracao em microsegundos do pulso para controlar o servo de rotação contínua (<name>.writeMicroseconds())
+#define Servo.frente()  (nome.writeMicroseconds(1700)) // : constantes de pulso para controle de servos de rotação contínua para fente.
+#define Servo.tras()    (nome.writeMicroseconds(1300)) //: constantes de pulso para controle de servos de rotação contínua para trás.
+#define Servo.parar()   (nome.writeMicroseconds(1500)) //: constantes de pulso para controle de servos de rotação contínua para parar.
+#define nome.angulo(anguloServo)   (nome.write(anguloServo)) // posiciona o servo no angulo especificado
+
+
 //I2C
-#define I2C.conectar(Numero endereco): inicia a comunicação I2C(o endereço é opcional para o mestre)(Wire.begin())
-#define I2C.transmitir(Numero endereco): abre uma transmissão para o escravo com o endereço fornecido(Wire.beginTranmission)
-#define I2C.pararTransmitir(): fecha a transmissão que estava aberta(Wire.endTransmission())
-#define I2C.escrever(msg): envia a mensagem para a transmissão aberta(apenas o mestre pode mandar, mas esse método pode ser usado pelo escravo para enviar a resposta de um pedido)(Wire.write())
-#define I2C.disponivel():verifica quantos dados estão disponíveis para o mestre após um pedido(Wire.available())
-#define I2C.ler():lê os dados disponíveis na transmissão ou na resposta(Wire.read())
+#define I2C.conectar(endereco)    (Wire.begin(endereco))       //: inicia a comunicação I2C(o endereço é opcional para o mestre)(Wire.begin())
+#define I2C.transmitir(endereco)  (Wire.beginTranmission(endereco)) //: abre uma transmissão para o escravo com o endereço fornecido(Wire.beginTranmission)
+#define I2C.pararTransmitir()     (Wire.endTransmission())    //: fecha a transmissão que estava aberta(Wire.endTransmission())
+#define I2C.escrever(msg)         (Wire.write())            //: envia a mensagem para a transmissão aberta(apenas o mestre pode mandar, mas esse método pode ser usado pelo escravo para enviar a resposta de um pedido)(Wire.write())
+#define I2C.disponivel()          (Wire.available())        //:verifica quantos dados estão disponíveis para o mestre após um pedido(Wire.available())
+#define I2C.ler()   (Wire.read())          //:lê os dados disponíveis na transmissão ou na resposta(Wire.read())
 #define I2C.solicitar(Numero endereco, Numero quantBytes): solicita "quantBytes" bytes de escravo no endereço fornecido(Wire.requestFrom())
 #define I2C.solicitado(metodo): registra o método fornecido como resposta à solicitação(Wire.onRequest())
 #define I2C.recebido(metodo): registra o método fornecido como resposta ao recebimento de dados(Wire.onReceive())
