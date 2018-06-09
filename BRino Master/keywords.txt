@@ -22,6 +22,10 @@ Memoria     KEYWORD1
 LCD         KEYWORD1
 Servo       KEYWORD1
 I2C         KEYWORD1
+Ligado      KEYWORD1 
+Desligado   KEYWORD1
+ALTO        KEYWORD1
+BAIXO       KEYWORD1
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
