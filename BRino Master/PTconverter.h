@@ -229,10 +229,10 @@ responder <dado>: indica o dado que será retornada pela função caso não seja
 //>:maior que
 //>=: maior que ou igual
 //!=: diferente de
-#define &&  e <condicao1> e <condicao2>: retorna Verdadeiro se ambas as condições forem verdadeiras (&&)
-#define ||  ou <condicao1> ou <condicao2>: retorna Verdadeiro se uma ou outra ou ambas as condições forem verdadeiras (||)
-#define &   E 
-#define |   OU
+//#define &&	e    //<condicao1> e <condicao2>: retorna Verdadeiro se ambas as condições forem verdadeiras (&&)
+//#define ||	ou     //<condicao1> ou <condicao2>: retorna Verdadeiro se uma ou outra ou ambas as condições forem verdadeiras (||)
+//#define &   E 
+//#define |   OU
 //Palavras-chaves
 #define SemRetorno  void  //: utilizada para declarar o tipo de retorno de uma função como vazio (void)
 #define responder   return  //indica o dado que será retornada pela função caso não seja SemRetorno (return)
